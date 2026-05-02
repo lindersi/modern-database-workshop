@@ -87,17 +87,17 @@ Set your preferences in ~/.redisclirc
 
 ### Using Redis Commander
 
-In a web browser window, navigate to <http://dataplatform:28119>. You should see an image similar to the one shown below
+In a web browser window, navigate to [http://dataplatform:28119](http://dataplatform:28119). You should see an image similar to the one shown below
 
-![Redis Commander](./images/redis-commander-home.png)
+Redis Commander
 
 > **What you should see:** The browser GUI showing the current keys stored in Redis, with a tree view on the left and a key inspector on the right.
 
 ### Using Redis Insight
 
-In a web browser window, navigate to <http://dataplatform:28174>. Confirm the **EULA and Privacy settings** pop-up window and click **Submit** and you should see an image similar to the one shown below
+In a web browser window, navigate to [http://dataplatform:28174](http://dataplatform:28174). Confirm the **EULA and Privacy settings** pop-up window and click **Submit** and you should see an image similar to the one shown below
 
-![Redis Commander](./images/redis-insight-1.png)
+Redis Commander
 
 > **What you should see:** The Redis Insight welcome screen with an option to add a new Redis database connection.
 
@@ -109,16 +109,16 @@ Click on the new connection **redis-1:6379** to connect to the redis instance.
 
 **DbGate** is cross-platform database manager. It's designed to be simple to use and effective, when working with more databases simultaneously. 
 
-In a browser window navigate to <http://dataplatform:28120/> and login in as user `dbgate` and password `abc123!`.
+In a browser window navigate to [http://dataplatform:28120/](http://dataplatform:28120/) and login in as user `dbgate` and password `abc123!`.
 
 On the **New Connection** page (click on the **+ Add new connection** under **CONNECTIONS** if it is not visible) select `Redis` for the **Connection type** and enter the following values:
 
- * **Server**: `redis-1` 
- * **Port**: `6379`
- * **User**: `default`
- * **Password**: `abc123!`
+- **Server**: `redis-1` 
+- **Port**: `6379`
+- **User**: `default`
+- **Password**: `abc123!`
 
-![Alt Image Text](./images/dbgate.png "DBGate Web GUI")
+Alt Image Text
 
 Click **Test** to check that connection settings are valid and then click **Connect**. 
 
@@ -144,7 +144,7 @@ We can use the command `SET` to store the title of a movie:
 SET movie:0110912:title "Pulp Fiction"
 ```
 
-Redis will store our data permanently, so we can later ask _What is the title of movie 0110912_?
+Redis will store our data permanently, so we can later ask *What is the title of movie 0110912*?
 
 ```
 GET movie:0110912:title
@@ -284,7 +284,8 @@ redis:6379> INCR movie:0110912:views
 
 > **What you should see:** `(integer) 1`.
 
-----
+---
+
 **Note:** There is something special about `INCR`. Why do we provide such an operation if we can do it ourselves with a bit of code? After all it is as simple as:
 
 ```
@@ -295,7 +296,7 @@ SET movie:0110912:views x
 
 The problem is that doing the increment this way will only work as long as there is a single client using the key. If two clients increment the counter simultaneously, they both read the same value, both increment it, and both write the same result — effectively losing one increment. Calling `INCR` in Redis prevents this because it is an atomic operation.
 
-----
+---
 
 ### Expiration and Time to Live
 
@@ -776,12 +777,14 @@ docker run -it --rm --network modern-database-platform-1 bitnamilegacy/redis:8.2
 
 The key flags used here are:
 
-| Flag | Description |
-|------|-------------|
-| `-h redis-1` | Hostname of the Redis server |
-| `-p 6379` | Port of the Redis server |
-| `-n 100000` | Total number of requests to send per test |
-| `-q` | Quiet mode — only prints the summary line (ops/sec) per command |
+
+| Flag         | Description                                                     |
+| ------------ | --------------------------------------------------------------- |
+| `-h redis-1` | Hostname of the Redis server                                    |
+| `-p 6379`    | Port of the Redis server                                        |
+| `-n 100000`  | Total number of requests to send per test                       |
+| `-q`         | Quiet mode — only prints the summary line (ops/sec) per command |
+
 
 You should see output similar to the following (exact numbers will vary depending on your hardware):
 
@@ -1002,15 +1005,15 @@ docker run -it --rm --network modern-database-platform-1 bitnamilegacy/redis:8.2
 
 The `redis-py` library is the standard Python client for Redis. In this section we will connect to Redis from the **Jupyter** environment and reproduce the same operations we performed in the CLI sections above — this time using the film dataset.
 
-Open a browser and navigate to <http://dataplatform:28888> and login it with token `abc123!`.
- 
+Open a browser and navigate to [http://dataplatform:28888](http://dataplatform:28888) and login it with token `abc123!`.
+
 Create a new Python 3 notebook by clicking on the Python 3 (ipykernel) widget. 
 
-![](./images/jupyter-1.png)
+
 
 A new notebook will be created with a first cell available to execute commands. 
 
-![](./images/jupyter-2.png)
+
 
 Then work through the cells below in order.
 
@@ -1329,10 +1332,12 @@ else:
 
 The data platform includes two components for this:
 
-| Component | URL | Purpose |
-|-----------|-----|---------|
-| **Redis MCP Server** | `http://dataplatform:28225/sse` | Exposes Redis as an MCP tool (SSE transport) |
-| **MCP Inspector** | <http://dataplatform:6274> | Web UI for exploring and testing any MCP server |
+
+| Component            | URL                                                  | Purpose                                         |
+| -------------------- | ---------------------------------------------------- | ----------------------------------------------- |
+| **Redis MCP Server** | `http://dataplatform:28225/sse`                      | Exposes Redis as an MCP tool (SSE transport)    |
+| **MCP Inspector**    | [http://dataplatform:6274](http://dataplatform:6274) | Web UI for exploring and testing any MCP server |
+
 
 The Redis MCP server is [mcp-redis](https://github.com/redis/mcp-redis) by Redis, running as version `0.5.0` and connected to `redis://redis-1:6379/0` (database 0).
 
@@ -1340,13 +1345,12 @@ The Redis MCP server is [mcp-redis](https://github.com/redis/mcp-redis) by Redis
 
 MCP Inspector is a browser-based tool for browsing the tools an MCP server exposes and for sending test requests.
 
-1. Open <http://dataplatform:6274> in your browser.
+1. Open [http://dataplatform:6274](http://dataplatform:6274) in your browser.
 2. In the **Transport** dropdown, select **SSE**.
 3. In the **URL** field, enter:
-   ```
+  ```
    http://63.178.5.123:28225/sse
-   ```
-   
+  ```
    replace the IP address by the one from the server where the dataplatform is running.
 4. Change **Connection Type** to `Direct`
 5. Click **Connect** and you should see a **Connected** message, if connectivity is successful.
@@ -1362,24 +1366,24 @@ Click any tool name to expand its input schema and description.
 
 Key tools available (grouped by data type):
 
-| Category | Example tools |
-|----------|--------------|
-| **Strings** | `set`, `get`, `mset`, `mget`, `incr`, `incrby`, `decr`, `expire`, `ttl` |
-| **Lists** | `rpush`, `lpush`, `lrange`, `lpop`, `rpop`, `llen` |
-| **Sets** | `sadd`, `smembers`, `srem`, `sismember`, `sunion`, `sinter` |
-| **Sorted Sets** | `zadd`, `zrange`, `zrevrange`, `zrank`, `zscore` |
-| **Hashes** | `hset`, `hget`, `hgetall`, `hmset`, `hincrby`, `hdel` |
-| **Keys** | `keys`, `exists`, `del`, `type`, `scan` |
+
+| Category        | Example tools                                                           |
+| --------------- | ----------------------------------------------------------------------- |
+| **Strings**     | `set`, `get`, `mset`, `mget`, `incr`, `incrby`, `decr`, `expire`, `ttl` |
+| **Lists**       | `rpush`, `lpush`, `lrange`, `lpop`, `rpop`, `llen`                      |
+| **Sets**        | `sadd`, `smembers`, `srem`, `sismember`, `sunion`, `sinter`             |
+| **Sorted Sets** | `zadd`, `zrange`, `zrevrange`, `zrank`, `zscore`                        |
+| **Hashes**      | `hset`, `hget`, `hgetall`, `hmset`, `hincrby`, `hdel`                   |
+| **Keys**        | `keys`, `exists`, `del`, `type`, `scan`                                 |
+
 
 ### Running a command from MCP Inspector
 
 1. Click the **Tools** tab and select **hset**.
 2. In the **Arguments** panel, enter:
-
-   * **name**: `movie:0110912`
-   * **key**: `title`,
-   * **value**: `Pulp Fiction`
-
+  - **name**: `movie:0110912`
+  - **key**: `title`,
+  - **value**: `Pulp Fiction`
 3. Click **Run Tool**.
 
 > **What you should see:** A JSON response confirming the field was set.
@@ -1388,8 +1392,7 @@ Now read the full movie hash back:
 
 1. Select the **hgetall** tool.
 2. In the **Arguments** panel, enter:
-    **name**: `movie:0110912`
-
+  **name**: `movie:0110912`
 3. Click **Run Tool**.
 
 > **What you should see:** The hash fields for `movie:0110912` returned as a JSON object.
@@ -1398,7 +1401,7 @@ Now read the full movie hash back:
 
 To see what movie keys are currently in Redis, select the **scan_keys** tool and enter:
 
-   * **pattern**: `movie:0110912`
+- **pattern**: `movie:0110912`
 
 Click **Run Tool**.
 
@@ -1429,7 +1432,8 @@ To connect from **Claude Desktop** to the PostgreSQL MCP server
   }
 }
 ```
-4. Save the file and restart **Claude Desktop**. 
+
+1. Save the file and restart **Claude Desktop**.
 
 Once connected, the assistant can answer questions and perform actions like:
 
